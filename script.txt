@@ -1,0 +1,92 @@
+var playerPositions = [1, 1, 1, 1];
+var currentPlayer = 0;
+var players = [];
+var numPlayers = 0;
+var avatars = ['avatar_fox.png', 'avatar_turtle.png', 'avatar_dog.png', 'avatar_cat.png'];
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    players = [document.getElementById('player1'), document.getElementById('player2'), document.getElementById('player3'), document.getElementById('player4')];
+    var disp = "";
+    for (var y = 10; y >= 1; y--) {
+        disp += "<tr>\n";
+        for (var x = 1; x <= 10; x++) {
+            var number = (y % 2 === 0) ? (y - 1) * 10 + (10 - x) + 1 : (y - 1) * 10 + (x - 1) + 1;
+            var divId = 'cell-' + number;
+            disp += '<td id="' + divId + '" class="box"></td>\n';
+        }
+        disp += "</tr>\n";
+    }
+    document.getElementById('board').innerHTML = disp;
+});
+
+function rollDice() {
+    var diceImages = ["d1.png", "d2.png", "d3.png", "d4.png", "d5.png", "d6.png"];
+    var diceResult = Math.floor(Math.random() * 6) + 1;
+    var diceImageSrc = 'image/' + diceImages[diceResult - 1];
+    var diceElement = document.getElementById('dice-1');
+
+    diceElement.style.display = 'inline';
+    diceElement.classList.add('shake');
+
+    setTimeout(() => {
+        diceElement.src = diceImageSrc;
+        diceElement.classList.remove('shake');
+
+        var currentPlayerPosition = playerPositions[currentPlayer];
+        var newPlayerPosition = currentPlayerPosition + diceResult;
+
+        if (newPlayerPosition > 100) {
+            newPlayerPosition = 100; 
+        }
+
+        var currentTileId = 'cell-' + currentPlayerPosition;
+        var newTileId = 'cell-' + newPlayerPosition;
+
+        var currentTile = document.getElementById(currentTileId);
+        var newTile = document.getElementById(newTileId);
+
+        if (currentTile) {
+            currentTile.innerHTML = ''; 
+        }
+        if (newTile) {
+            var avatarImg = document.createElement('img');
+            avatarImg.src = 'image/' + avatars[currentPlayer];
+            avatarImg.classList.add('player-avatar');
+            newTile.appendChild(avatarImg);
+        }
+
+        playerPositions[currentPlayer] = newPlayerPosition;
+        currentPlayer = (currentPlayer + 1) % numPlayers;
+
+    }, 500);
+}
+
+function submitPlayer() {
+    var submit = document.getElementById('submitPlayer');
+    numPlayers = parseInt(document.getElementById('playerNum').value);
+
+    if (numPlayers < 1 || numPlayers > 4) {
+        alert('Please enter a valid number of players [1-4]');
+        return;
+    }
+
+    for (var i = 0; i < 4; i++) {
+        players[i].style.display = 'none';
+    }
+
+    for (var i = 0; i < numPlayers; i++) {
+        players[i].style.display = 'flex';
+        playerPositions[i] = 1; 
+
+        var startTile = document.getElementById('cell-1');
+        if (startTile) {
+            var avatarImg = document.createElement('img');
+            avatarImg.src = 'image/' + avatars[i];
+            avatarImg.classList.add('player-avatar');
+            startTile.appendChild(avatarImg);
+        }
+    }
+
+    document.getElementById('playerNum').style.display = "none";
+    submit.style.display = "none";
+}

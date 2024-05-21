@@ -1,0 +1,212 @@
+body {
+  background-color: #ffffff;
+  backdrop-filter: blur(10px);
+  font-family: Bahnschrift;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;
+  margin: 0;
+}
+
+.header {
+  background-color: #A91D3A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 1rem 0;
+  color: white;
+}
+
+.main-content {
+  display: flex;
+  flex-grow: 1;
+  width: 100%;
+  padding: 1rem;
+}
+
+.left-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.right-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding-left: 1rem;
+}
+
+.player-box {
+  width: 80px; 
+  height: 80px; 
+  margin: 1rem;
+  background-color: #A91D3A;
+  border: 2px solid #000000; 
+  box-sizing: border-box; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+table, #board {
+  margin: 0; 
+  padding: 0; 
+}
+
+table {
+  background-image: url(image/board.png);
+  background-size: cover;
+  max-width: 100%;
+  height: auto;
+}
+
+.box {
+  border: 1px solid black;
+  padding: 2.5rem;
+  position: relative;
+}
+
+.player-avatar {
+  width: 30px; 
+  height: 30px; 
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  transform: translate(-50%, -50%);
+}
+
+#rollDice {
+  background-color: #A91D3A;
+  color: white;
+  border-radius: 1rem;
+  padding: 2rem 7rem;
+  width: auto;
+  font-size: 1.5rem;
+  font-family: Bahnschrift;
+}
+
+#dice-1 {
+  width: 100px;
+  height: 100px;
+  margin-left: 1rem;
+  border-radius: 0.5rem;
+  border: 2px solid black;
+}
+
+.avatar-container {
+  background-color: #A91D3A;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 2px solid #A91D3A;
+}
+
+.avatar-container input {
+  margin-bottom: 1rem;
+}
+
+select {
+  padding: 1rem;
+  margin: 1rem;
+  width: 250px;
+  font-family: Bahnschrift;
+  text-align: center;
+  border-radius: 0.5rem;
+}
+
+input[type=button] {
+  padding: 0.5rem 3rem;
+  font-family: Bahnschrift;
+  border-radius: 0.5rem;
+}
+
+.players {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.player-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  border: 1px solid #ccc;
+  background-color: white;
+  border-radius: 0.5rem;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: solid 1px black;
+}
+
+.shake {
+  animation: shake 0.5s infinite;
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(8deg);
+  }
+  50% {
+    transform: rotate(-8deg);
+  }
+  100% {
+    transform: rotate(8deg);
+  }
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 1rem;
+}
+
+@media (max-width: 1200px) {
+  .box {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .box {
+    padding: 1rem;
+  }
+
+  .header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .main-content {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .left-section {
+    order: 1; /* Change the order to appear below */
+  }
+
+  .right-section {
+    order: 2; /* Change the order to appear above */
+  }
+}

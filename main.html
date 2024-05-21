@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snake and Ladder</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="header">
+    <h1>SNAKE AND LADDERS</h1>
+  </div>
+
+  <div class="main-content">
+    <div class="left-section">
+      <div id="startTile" class="player-box"></div>
+      <table id="board"></table>
+    </div>
+    <div class="right-section">
+      <div class="avatar-container">
+        <select id="playerNum">
+          <option value="">Choose the number of players</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+        <input type="button" id="submitPlayer" onclick="submitPlayer()" value="ENTER">
+        <div class="players" id="playerAvatars">
+          <div class="player-info" id="player1" style="display: none;">
+            <img src="image/avatar_fox.png">
+            <span>Player 1</span>
+          </div>
+          <div class="player-info" id="player2" style="display: none;">
+            <img src="image/avatar_turtle.png">
+            <span>Player 2</span>
+          </div>
+          <div class="player-info" id="player3" style="display: none;">
+            <img src="image/avatar_dog.png">
+            <span>Player 3</span>
+          </div>
+          <div class="player-info" id="player4" style="display: none;">
+            <img src="image/avatar_cat.png">
+            <span>Player 4</span>
+          </div>
+        </div>
+      </div>
+      <div class="buttons" style="display: none;">
+        <button id="rollDice" onclick="rollDice()">Roll Dice</button>
+        <img src="image/default_dice.png" id="dice-1">
+      </div>
+    </div>
+  </div>
+  
+<script src="script.js"></script>
+</body>
+</html>
