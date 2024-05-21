@@ -223,6 +223,8 @@ img {
 
   .player-box {
     position: absolute;
+    width: 40px; 
+    height: 40px;
     top: 95%; /* Adjust to place right under the board */
     transform: translate(-250%, 10px); 
   }
