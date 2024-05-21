@@ -187,7 +187,7 @@ img {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 750px) {
   .box {
     padding: 1rem;
   }
@@ -223,8 +223,6 @@ img {
 
   .player-box {
     position: absolute;
-    width: 40px; 
-    height: 40px;
     top: 95%; /* Adjust to place right under the board */
     transform: translate(-250%, 10px); 
   }
