@@ -147,6 +147,7 @@ input[type=button] {
   border: 1px solid #ccc;
   background-color: white;
   border-radius: 0.5rem;
+  padding: 1rem;
 }
 
 img {
@@ -186,9 +187,13 @@ img {
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 750px) {
   .box {
-    padding: 1rem;
+    padding: 1.4rem;
+  }
+
+  .players {
+    gap: 0.5rem;
   }
 
   .header {
@@ -204,9 +209,26 @@ img {
 
   .left-section {
     order: 1; /* Change the order to appear below */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
   }
 
   .right-section {
     order: 2; /* Change the order to appear above */
+    position: relative;
+    top: 50px;
+  }
+
+  .player-box {
+    position: absolute;
+    top: 95%; /* Adjust to place right under the board */
+    transform: translate(-250%, 10px); 
+  }
+
+  img {
+    width: 70px;
+    height: 70px;
   }
 }
