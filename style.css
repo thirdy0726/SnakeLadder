@@ -33,6 +33,9 @@ body {
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 
 .close {
@@ -54,7 +57,7 @@ body {
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: 50%;
 }
 
 
@@ -70,6 +73,7 @@ body {
   align-items: center;
   justify-content: center;
   flex: 1;
+  margin-left: 30px;
 }
 
 .right-section {
@@ -79,11 +83,12 @@ body {
   justify-content: center;
   flex: 1;
   padding-left: 1rem;
+  margin-right: 30px;
 }
 
 .player-box {
-  width: 80px; 
-  height: 80px; 
+  width: 100px; 
+  height: 100px; 
   background-color: #A91D3A;
   border: 2px solid #000000; 
   box-sizing: border-box; 
@@ -103,7 +108,7 @@ table {
 
 .box {
   border: 1px solid black;
-  padding: 2.5rem;
+  padding: 2.3rem;
   position: relative;
 }
 
@@ -120,8 +125,7 @@ table {
   background-color: #A91D3A;
   color: white;
   border-radius: 1rem;
-  padding: 2rem 7rem;
-  width: auto;
+  padding: 2.3rem 7rem;
   font-size: 1.5rem;
   font-family: Bahnschrift;
 }
@@ -135,6 +139,7 @@ table {
 }
 
 .avatar-container {
+  max-width: 100%;
   background-color: #A91D3A;
   display: flex;
   flex-direction: column;
@@ -183,8 +188,8 @@ input[type=button] {
 }
 
 img {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   border: solid 1px black;
 }
@@ -213,19 +218,177 @@ img {
   padding: 1rem;
 }
 
-@media (max-width: 1200px) {
-  .box {
-    padding: 2rem;
+@media (max-width: 1600px) {
+  .avatar-container {
+    max-width: 90%;
+  }
+
+  img {
+    width: 100px;
+    height: 100px;
   }
 }
 
-@media (max-width: 730px) {
+@media (max-width: 1500px) {
+  .avatar-container {
+    max-width: 80%;
+  }
+
+  #rollDice {
+    padding: 1.5rem 3rem;
+  }
+
+  #dice-1 {
+    width: 75px;
+    height: 75px;
+  }
+}
+
+@media (max-width: 1300px) {
   .box {
+    padding: 1.8rem;
+  }
+
+  .avatar-container {
+    max-width: 75%;
+  }
+
+  #rollDice {
+    padding: 1rem 3rem;
+  }
+
+  img {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+@media (max-width: 1100px) {
+  table {
+    margin-left: 0;
+  }
+  .player-box {
+    width: 70px;
+    height: 70px;
+    position: fixed;
+    bottom: 20px;
+    left: 40px;
+  }
+  #rollDice {
+    padding: 0.5rem 1rem;
+  }
+  #dice-1 {
+    width: 40px;
+    height: 40px;
+  }
+  .left-section {
+    margin-left: 10px;
+  }
+  .right-section {
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 900px) {
+  .box {
+    padding: 1.5rem;
+  }
+  #rollDice {
+    padding: 0.5rem 0.5rem;
+    font-size: 20px;
+  }
+  #dice-1 {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 800px) {
+  #rollDice {
+    padding: 0.5rem 0.5rem;
+    font-size: 20px;
+    position: fixed;
+    bottom: 30px;
+    right: 12%;
+  }
+  #dice-1 {
+    width: 40px;
+    height: 40px;
+    position: fixed;
+    bottom: 30px;
+    right: 5%;
+  }
+}
+
+@media (max-width: 750px) {
+  .box {
+    padding: 1.5rem;
+  }
+  .player-box {
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    bottom: 25%;
+  }
+  .main-content {
+    flex-direction: column;
+    align-items: center;
     padding: 1rem;
   }
-  
+
+  .left-section {
+    order: 1; /* Change the order to appear below */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+
+  .right-section {
+    order: 2; /* Change the order to appear above */
+    position: relative;
+    top: 50px;
+  }
+  .avatar-container {
+    position: relative;
+    left: 0;
+    width: 100vh;
+    padding: 1rem;
+    display: inline-block;
+  }
+
+  img {
+    width: 70px;
+    height: 70px;
+  }
+
+  #rollDice {
+    position: fixed;
+    bottom: 25%;
+    right: 15%;
+  }
+  #dice-1 {
+    position: fixed;
+    bottom: 25%;
+    right: 5%;
+  }
+}
+
+@media (max-width: 540px) {
+  .box {
+    padding: 1.3rem;
+  }
+
+  .player-box {
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    bottom: 30%;
+  }
+
   .players {
     gap: 0.5rem;
+    font-size: 12px;
   }
 
   .header {
@@ -253,10 +416,16 @@ img {
     top: 50px;
   }
 
-  img {
-    width: 80px;
-    height: 80px;
+  #rollDice {
+    position: fixed;
+    bottom: 30%;
+    right: 20%;
+  }
+
+  #dice-1 {
+    position: fixed;
+    bottom: 30%;
+    right: 7%;
   }
 }
-
 
