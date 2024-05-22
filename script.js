@@ -222,7 +222,7 @@ function highlightCurrentPlayer() {
     // Highlight current player
     var currentPlayerInfo = document.getElementById('player' + (currentPlayer + 1));
     if (currentPlayerInfo) {
-        currentPlayerInfo.style.backgroundColor = 'gray';
+        currentPlayerInfo.style.backgroundColor = '#FFFF80';
     }
 }
 
@@ -338,7 +338,7 @@ function popupBot(text) {
     modalText.innerText = text;
 
     var modalButtons = document.getElementById("butBtn");
-    modalButtons.innerHTML = '<button onclick="startGame()">Yes</button><button onclick="closeBotPopup()">No</button>';
+    modalButtons.innerHTML = '<button onclick="startGame()">Yes</button><button onclick="closeModal()">No</button>';
 
     modal.style.display = "block";
 }
