@@ -374,7 +374,7 @@ img {
   }
 }
 
-@media (max-width: 540px) {
+@media (max-width: 600px) {
   html, body {
     overflow: hidden; /* Ensure overflow is hidden on mobile devices */
     height: 100%; /* Ensure the height is set to 100% */
@@ -397,6 +397,10 @@ img {
     bottom: 28%;
   }
 
+  select {
+    width: 50vh;
+  }
+  
   .players {
     gap: 0.5rem;
     font-size: 12px;
