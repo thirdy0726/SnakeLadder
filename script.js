@@ -50,6 +50,8 @@ for (var y = 10; y >= 1; y--) {
 document.getElementById('board').innerHTML = disp;
 highlightCurrentPlayer();
 
+//==================================== ROLL DICE ============================================//
+
 function rollDice() {
     if (finishedPlayers.every(Boolean)) {
         console.log("All players have finished the game.");
@@ -84,17 +86,17 @@ function rollDice() {
         var currentPlayerPosition = playerPositions[currentPlayer];
         var newPlayerPosition = currentPlayerPosition + diceResult;
 
-        console.log(`Player ${currentPlayer + 1} rolls a ${diceResult}. Moving from ${currentPlayerPosition} to ${newPlayerPosition}.`);
+        console.log("Player " + (currentPlayer + 1) + " rolls a " + diceResult + ". Moving from " + currentPlayerPosition + " to " + newPlayerPosition + ".");
 
         if (newPlayerPosition > 100) {
             newPlayerPosition = 100;
         }
 
         if (ladders[newPlayerPosition]) {
-            console.log(`Player ${currentPlayer + 1} hits a ladder at ${newPlayerPosition}. Climbing up to ${ladders[newPlayerPosition]}.`);
+            console.log("Player " + (currentPlayer + 1) + " hits a ladder at " + newPlayerPosition + ". Climbing up to " + ladders[newPlayerPosition] + ".");
             newPlayerPosition = ladders[newPlayerPosition];
         } else if (snakes[newPlayerPosition]) {
-            console.log(`Player ${currentPlayer + 1} hits a snake at ${newPlayerPosition}. Sliding down to ${snakes[newPlayerPosition]}.`);
+            console.log("Player " + (currentPlayer + 1) + " hits a snake at " + newPlayerPosition + ". Sliding down to " + snakes[newPlayerPosition] + ".");
             newPlayerPosition = snakes[newPlayerPosition];
         }
 
@@ -102,6 +104,11 @@ function rollDice() {
 
     }, 500);
 }
+
+//==================================== ROLL DICE ============================================//
+
+
+//==================================== ROLL DICE ANIMATION ============================================//
 
 function animateMove(playerIndex, start, end) {
     var currentTileId = 'cell-' + start;
@@ -130,7 +137,7 @@ function animateMove(playerIndex, start, end) {
     playerPositions[playerIndex] = end;
 
     if (end === 100) {
-        console.log(`Player ${playerIndex + 1} has reached the finish line and won the game!`);
+        console.log("Player" + playerIndex + 1 + "has reached the finish line and won the game!");
         finishedPlayers[playerIndex] = true;
     }
 
@@ -142,6 +149,8 @@ function animateMove(playerIndex, start, end) {
         currentPlayer = (currentPlayer + 1) % numPlayers;
     }
 }
+
+//==================================== ROLL DICE ANIMATION ============================================//
 
 
 /*function animateMove(playerIndex, start, end) {
@@ -200,6 +209,9 @@ function animateMove(playerIndex, start, end) {
     moveStep(start + 1);
 }*/
 
+//==================================== HIGHLIGHT PLAYERS TURN ============================================//
+
+
 function highlightCurrentPlayer() {
     // Remove highlight from all players
     var playerInfos = document.querySelectorAll('.player-info');
@@ -213,6 +225,11 @@ function highlightCurrentPlayer() {
         currentPlayerInfo.style.backgroundColor = 'gray';
     }
 }
+
+//==================================== HIGHLIGHT PLAYERS TURN ============================================//
+
+
+//==================================== NUMBER OF PLAYERS ============================================//
 
 function submitPlayer() {
     var submit = document.getElementById('submitPlayer');
@@ -253,8 +270,30 @@ function submitPlayer() {
 
     // Highlight the first player
     highlightCurrentPlayer();
+
+    if (numPlayers === 1) {
+        popupBot("Since you are alone, Would you like to Add Bots?");
+
+    } 
+    else if (numPlayers === 2) {
+        popupBot("Would you like to Add Bots?");
+
+    }
+    else if (numPlayers === 3) {
+        popupBot("Would you like to Add Bots?");
+
+    }
+    else if (numPlayers === 4) {
+      closeModal();
+    }
+
+
 }
 
+//==================================== NUMBER OF PLAYERS ============================================//
+
+
+//==================================== AVATAR SIZE ============================================//
 
 function adjustAvatarSizes(tile) {
     var avatars = tile.getElementsByClassName('player-avatar');
@@ -282,9 +321,40 @@ function adjustAvatarSizes(tile) {
 
     
 }
+//==================================== AVATAR SIZE ============================================//
+
+
+//==================================== BOTS ============================================//
+
+// Get the modal
+var modal = document.getElementById('botPopup');
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// Function to open the modal
+function popupBot(text) {
+    var modalText = document.getElementById("botText");
+    modalText.innerText = text;
+
+    var modalButtons = document.getElementById("butBtn");
+    modalButtons.innerHTML = '<button onclick="startGame()">Yes</button><button onclick="closeModal()">No</button>';
+
+    modal.style.display = "block";
+}
+
+// Function to close the modal
+function closeBotPopup() {
+    modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
 
 function addBot() {
-    var botsToAdd = parseInt(prompt("How many bots would you like to add?"));
     var remainingSlots = 4 - numPlayers;
 
     if (botsToAdd > 0 && botsToAdd <= remainingSlots) {
@@ -307,4 +377,6 @@ function addBot() {
     } else {
         alert("Invalid number of bots to add.");
     }
+
 }
+//==================================== BOTS ============================================//
