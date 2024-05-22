@@ -353,13 +353,13 @@ img {
     position: relative;
     left: 0;
     width: 100vh;
-    padding: 0.7rem;
+    padding: 0.5rem;
     display: inline-block;
   }
 
   img {
-    width: 20px;
-    height: 20px;
+    width: 50px;
+    height: 50px;
   }
 
   #rollDice {
@@ -394,8 +394,8 @@ img {
   }
 
   .player-box {
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     position: fixed;
     bottom: 30%;
   }
