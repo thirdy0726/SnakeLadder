@@ -385,7 +385,9 @@ img {
   .bot-box {
     overflow: hidden; /* Prevent overflow in modal */
   }
-  
+  table {
+    margin-left: 0;
+  }
   .box {
     padding: 1rem;
   }
