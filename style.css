@@ -396,7 +396,7 @@ img {
     position: fixed;
     bottom: 28%;
   }
-  
+
   .players {
     gap: 0.5rem;
     font-size: 12px;
@@ -424,9 +424,11 @@ img {
 
   .right-section {
     order: 2; /* Change the order to appear above */
-    position: relative;
-    top: 50px;
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vh;
   }
 
   #rollDice {
@@ -440,5 +442,13 @@ img {
     bottom: 28%;
     right: 7%;
   }
-}
 
+  /* Centering the select element and button */
+  .center-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* Full width of the screen */
+  }
+}
