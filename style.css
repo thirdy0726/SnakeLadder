@@ -220,9 +220,14 @@ img {
 
 @media (max-width: 730px) {
   .box {
-    padding: 0.95rem;
+    padding: 1rem;
   }
 
+  .avatar-container {
+    position: relative;
+    left: -3%;
+  }
+  
   .players {
     gap: 0.5rem;
   }
