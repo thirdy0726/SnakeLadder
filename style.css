@@ -225,7 +225,7 @@ img {
 
   .avatar-container {
     position: relative;
-    left: -3%;
+    left: -6%;
   }
   
   .players {
@@ -256,9 +256,6 @@ img {
     position: relative;
     top: 50px;
   }
-
-  
-  
 
   img {
     width: 80px;
