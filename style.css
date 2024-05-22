@@ -53,11 +53,17 @@ body {
 }
 
 .bot-box-content {
-  background-color: #fefefe;
+  color: #ffffff;
+  background-color: #A91D3A;
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
   width: 50%;
+}
+
+.bot-box-content button {
+  padding: 0.5rem 3rem;
+  margin: 0.5rem;
 }
 
 
