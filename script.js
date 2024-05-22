@@ -161,7 +161,7 @@ function highlightCurrentPlayer() {
     // Highlight current player
     var currentPlayerInfo = document.getElementById('player' + (currentPlayer + 1));
     if (currentPlayerInfo) {
-        currentPlayerInfo.style.backgroundColor = 'gray';
+        currentPlayerInfo.style.backgroundColor = '#FFFF80';
     }
 }
 
