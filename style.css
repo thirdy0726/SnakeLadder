@@ -353,21 +353,24 @@ img {
     position: relative;
     left: 0;
     width: 100vh;
-    padding: 1rem;
+    padding: 0.7rem;
     display: inline-block;
   }
 
   img {
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
   }
 
   #rollDice {
+    padding: 1rem 1rem;
     position: fixed;
     bottom: 35%;
     right: 15%;
   }
   #dice-1 {
+    width: 40px;
+    height: 40px;
     position: fixed;
     bottom: 35%;
     right: 5%;
@@ -430,15 +433,12 @@ img {
   }
 
   #rollDice {
-    padding: 1rem 1rem;
     position: fixed;
     bottom: 30%;
     right: 20%;
   }
 
   #dice-1 {
-    width: 40px;
-    height: 40px;
     position: fixed;
     bottom: 30%;
     right: 7%;
