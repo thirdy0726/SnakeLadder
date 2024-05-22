@@ -66,11 +66,6 @@ function rollDice() {
         return;
     }
 
-    var startTile = document.getElementById('startTile');
-    if (startTile) {
-        startTile.innerHTML = ''; 
-    }
-
     var diceImages = ["d1.png", "d2.png", "d3.png", "d4.png", "d5.png", "d6.png"];
     var diceResult = Math.floor(Math.random() * 6) + 1;
     var diceImageSrc = 'image/' + diceImages[diceResult - 1];
@@ -105,9 +100,6 @@ function rollDice() {
     }, 500);
 }
 
-//==================================== ROLL DICE ============================================//
-
-
 //==================================== ROLL DICE ANIMATION ============================================//
 
 function animateMove(playerIndex, start, end) {
@@ -137,7 +129,7 @@ function animateMove(playerIndex, start, end) {
     playerPositions[playerIndex] = end;
 
     if (end === 100) {
-        console.log("Player" + playerIndex + 1 + "has reached the finish line and won the game!");
+        console.log("Player " + (playerIndex + 1) + " has reached the finish line and won the game!");
         finishedPlayers[playerIndex] = true;
     }
 
@@ -148,69 +140,16 @@ function animateMove(playerIndex, start, end) {
     while (finishedPlayers[currentPlayer]) {
         currentPlayer = (currentPlayer + 1) % numPlayers;
     }
+
+    // If the next player is a bot, make the bot move
+    if (players[currentPlayer].classList.contains('bot')) {
+        setTimeout(() => {
+            rollDice();
+        }, 1000); // Delay the bot's move for 1 second
+    }
 }
 
-//==================================== ROLL DICE ANIMATION ============================================//
-
-
-/*function animateMove(playerIndex, start, end) {
-    var currentTileId = 'cell-' + start;
-    var newTileId = 'cell-' + end;
-
-    var currentTile = document.getElementById(currentTileId);
-    var newTile = document.getElementById(newTileId);
-
-    if (currentTile) {
-        var avatarToRemove = currentTile.querySelector(`img[src='image/${avatars[playerIndex]}']`);
-        if (avatarToRemove) {
-            currentTile.removeChild(avatarToRemove);
-        }
-    }
-
-    function moveStep(position) {
-        if (position > end) {
-            playerPositions[playerIndex] = end;
-            if (end === 100) {
-                console.log(`Player ${playerIndex + 1} has reached the finish line and won the game!`);
-                finishedPlayers[playerIndex] = true;
-            }
-            currentPlayer = (currentPlayer + 1) % numPlayers;
-            highlightCurrentPlayer();
-
-            // Ensure to skip players who have finished the game
-            while (finishedPlayers[currentPlayer]) {
-                currentPlayer = (currentPlayer + 1) % numPlayers;
-            }
-            return;
-        }
-
-        var nextTileId = 'cell-' + position;
-        var nextTile = document.getElementById(nextTileId);
-
-        if (nextTile) {
-            var avatarImg = document.createElement('img');
-            avatarImg.src = 'image/' + avatars[playerIndex];
-            avatarImg.classList.add('player-avatar');
-            nextTile.appendChild(avatarImg);
-            adjustAvatarSizes(nextTile);
-        }
-
-        setTimeout(() => {
-            if (nextTile) {
-                var avatarToRemove = nextTile.querySelector(`img[src='image/${avatars[playerIndex]}']`);
-                if (avatarToRemove) {
-                    nextTile.removeChild(avatarToRemove);
-                }
-            }
-            moveStep(position + 1);
-        }, 300);
-    }
-
-    moveStep(start + 1);
-}*/
-
 //==================================== HIGHLIGHT PLAYERS TURN ============================================//
-
 
 function highlightCurrentPlayer() {
     // Remove highlight from all players
@@ -222,12 +161,9 @@ function highlightCurrentPlayer() {
     // Highlight current player
     var currentPlayerInfo = document.getElementById('player' + (currentPlayer + 1));
     if (currentPlayerInfo) {
-        currentPlayerInfo.style.backgroundColor = '#FFFF80';
+        currentPlayerInfo.style.backgroundColor = 'gray';
     }
 }
-
-//==================================== HIGHLIGHT PLAYERS TURN ============================================//
-
 
 //==================================== NUMBER OF PLAYERS ============================================//
 
@@ -253,7 +189,7 @@ function submitPlayer() {
             var avatarImg = document.createElement('img');
             avatarImg.src = 'image/' + avatars[i];
             avatarImg.classList.add('player-avatar');
-            avatarImg.classList.add('player-box');         
+            avatarImg.classList.add('player-box');
 
             startTile.appendChild(avatarImg);
             console.log(`Placed player ${i + 1}'s avatar on the start tile.`);
@@ -271,27 +207,12 @@ function submitPlayer() {
     // Highlight the first player
     highlightCurrentPlayer();
 
-    if (numPlayers === 1) {
-        popupBot("Since you are alone, Would you like to Add Bots?");
-
-    } 
-    else if (numPlayers === 2) {
-        popupBot("Would you like to Add Bots?");
-
+    if (numPlayers === 1 || numPlayers === 2 || numPlayers === 3) {
+        popupBot("Would you like to add bots?");
+    } else {
+        closeBotPopup();
     }
-    else if (numPlayers === 3) {
-        popupBot("Would you like to Add Bots?");
-
-    }
-    else if (numPlayers === 4) {
-      closeModal();
-    }
-
-
 }
-
-//==================================== NUMBER OF PLAYERS ============================================//
-
 
 //==================================== AVATAR SIZE ============================================//
 
@@ -318,27 +239,20 @@ function adjustAvatarSizes(tile) {
             avatars[i].style.left = positions[i].left;
         }
     }
-
-    
 }
-//==================================== AVATAR SIZE ============================================//
-
 
 //==================================== BOTS ============================================//
 
 // Get the modal
 var modal = document.getElementById('botPopup');
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
 // Function to open the modal
 function popupBot(text) {
     var modalText = document.getElementById("botText");
     modalText.innerText = text;
 
-    var modalButtons = document.getElementById("butBtn");
-    modalButtons.innerHTML = '<button onclick="startGame()">Yes</button><button onclick="closeModal()">No</button>';
+    var modalButtons = document.getElementById("botButtons");
+    modalButtons.innerHTML = '<button onclick="addBot()">Yes</button><button onclick="closeBotPopup()">No</button>';
 
     modal.style.display = "block";
 }
@@ -355,28 +269,28 @@ window.onclick = function(event) {
 }
 
 function addBot() {
-    var remainingSlots = 4 - numPlayers;
+    if (numPlayers < 4) {
+        var botIndex = numPlayers;
+        players[botIndex].classList.add('bot');
+        players[botIndex].style.display = 'flex';
+        playerPositions[botIndex] = 1;
 
-    if (botsToAdd > 0 && botsToAdd <= remainingSlots) {
-        numPlayers += botsToAdd;
-        // Add bots
-        for (var i = 0; i < botsToAdd; i++) {
-            players[numPlayers - 1 - i].style.display = 'flex';
-            playerPositions[numPlayers - 1 - i] = 1;
-
-            var startTile = document.getElementById('cell-1');
-            if (startTile) {
-                var botAvatarImg = document.createElement('img');
-                botAvatarImg.src = 'image/' + avatars[numPlayers - 1 - i];
-                botAvatarImg.classList.add('player-avatar');
-                startTile.appendChild(botAvatarImg);
-                console.log(`Added bot ${i + 1}`);
-                adjustAvatarSizes(startTile);
-            }
+        var startTile = document.getElementById('startTile');
+        if (startTile) {
+            var botAvatarImg = document.createElement('img');
+            botAvatarImg.src = 'image/' + avatars[botIndex];
+            botAvatarImg.classList.add('player-avatar');
+            startTile.appendChild(botAvatarImg);
+            console.log(`Added bot ${botIndex + 1}`);
+            adjustAvatarSizes(startTile);
         }
-    } else {
-        alert("Invalid number of bots to add.");
-    }
 
+        numPlayers++;
+        closeBotPopup();
+    } else {
+        alert("Maximum number of players (4) already added.");
+        closeBotPopup();
+    }
 }
+
 //==================================== BOTS ============================================//
