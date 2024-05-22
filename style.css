@@ -47,7 +47,6 @@ body {
 .player-box {
   width: 80px; 
   height: 80px; 
-  margin: 1rem;
   background-color: #A91D3A;
   border: 2px solid #000000; 
   box-sizing: border-box; 
@@ -58,7 +57,7 @@ body {
 }
 
 table, #board {
-  margin: 0; 
+  margin-left: 1rem; 
   padding: 0; 
 }
 
@@ -76,11 +75,11 @@ table {
 }
 
 .player-avatar {
-  width: 30px; 
-  height: 30px; 
+  width: 80px; /* Adjust size as needed */
+  height: 80px; /* Adjust size as needed */
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
 }
 
@@ -221,14 +220,11 @@ img {
     top: 50px;
   }
 
-  .player-box {
-    position: absolute;
-    top: 95%; /* Adjust to place right under the board */
-    transform: translate(-250%, 10px); 
-  }
+  
+  
 
   img {
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
   }
 }
