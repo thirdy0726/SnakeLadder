@@ -10,6 +10,7 @@
       padding: 0;
       overflow: hidden;
       display: flex;
+      flex-direction: column; /* Stack the elements vertically */
       justify-content: center;
       align-items: center;
       height: 100vh;
@@ -25,8 +26,15 @@
       z-index: -1000;
       filter: brightness(0.6) blur(5px); 
     }
+    h1 {
+      font-size: 10vw; /* Make the title responsive to screen width */
+      color: white;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
     #btnPlay {
-      padding: 5rem 8rem;
+      padding: 2rem 8rem;
       font-size: 60px;
       font-family: Bahnschrift;
       font-weight: bolder;
@@ -41,6 +49,13 @@
       background-color: rgba(255, 255, 255, 0.3);
       transform: scale(1.10);
     }
+
+    @media (max-width: 800px) {
+      #btnPlay {
+        padding: 1rem 5rem; 
+        font-size: 28px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -48,6 +63,7 @@
     <source src="image/snl_video.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
+  <h1>SNAKE AND LADDERS</h1>
   <button id="btnPlay" onclick="redirectToMainPage()">Play</button>
 </body>
 <script>
