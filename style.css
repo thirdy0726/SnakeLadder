@@ -396,11 +396,7 @@ img {
     position: fixed;
     bottom: 28%;
   }
-
-  select {
-    width: 100px;
-  }
-
+  
   .players {
     gap: 0.5rem;
     font-size: 12px;
@@ -444,20 +440,5 @@ img {
     bottom: 28%;
     right: 7%;
   }
-
-  /* Centering the select element and button */
-  .center-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%; /* Full width of the screen */
-    padding: 1rem;
-  }
-
-  .center-container select, .center-container input[type=button] {
-    margin: 0.5rem 0; /* Space between elements */
-  }
 }
-
 
