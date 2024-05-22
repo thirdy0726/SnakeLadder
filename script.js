@@ -338,7 +338,7 @@ function popupBot(text) {
     modalText.innerText = text;
 
     var modalButtons = document.getElementById("butBtn");
-    modalButtons.innerHTML = '<button onclick="startGame()">Yes</button><button onclick="closeModal()">No</button>';
+    modalButtons.innerHTML = '<button onclick="startGame()">Yes</button><button onclick="closeBotPopup()">No</button>';
 
     modal.style.display = "block";
 }
