@@ -117,6 +117,47 @@ function animateMove(playerIndex, start, end) {
         }
     }
 
+    var nextTile = document.getElementById(newTileId);
+
+    if (nextTile) {
+        var avatarImg = document.createElement('img');
+        avatarImg.src = 'image/' + avatars[playerIndex];
+        avatarImg.classList.add('player-avatar');
+        nextTile.appendChild(avatarImg);
+        adjustAvatarSizes(nextTile);
+    }
+
+    playerPositions[playerIndex] = end;
+
+    if (end === 100) {
+        console.log(`Player ${playerIndex + 1} has reached the finish line and won the game!`);
+        finishedPlayers[playerIndex] = true;
+    }
+
+    currentPlayer = (currentPlayer + 1) % numPlayers;
+    highlightCurrentPlayer();
+
+    // Ensure to skip players who have finished the game
+    while (finishedPlayers[currentPlayer]) {
+        currentPlayer = (currentPlayer + 1) % numPlayers;
+    }
+}
+
+
+/*function animateMove(playerIndex, start, end) {
+    var currentTileId = 'cell-' + start;
+    var newTileId = 'cell-' + end;
+
+    var currentTile = document.getElementById(currentTileId);
+    var newTile = document.getElementById(newTileId);
+
+    if (currentTile) {
+        var avatarToRemove = currentTile.querySelector(`img[src='image/${avatars[playerIndex]}']`);
+        if (avatarToRemove) {
+            currentTile.removeChild(avatarToRemove);
+        }
+    }
+
     function moveStep(position) {
         if (position > end) {
             playerPositions[playerIndex] = end;
@@ -157,7 +198,7 @@ function animateMove(playerIndex, start, end) {
     }
 
     moveStep(start + 1);
-}
+}*/
 
 function highlightCurrentPlayer() {
     // Remove highlight from all players
@@ -175,12 +216,15 @@ function highlightCurrentPlayer() {
 
 function submitPlayer() {
     var submit = document.getElementById('submitPlayer');
-    numPlayers = parseInt(document.getElementById('playerNum').value);
+    var selectElement = document.getElementById('playerNum');
+    var selectedValue = selectElement.value;
 
-    if (numPlayers < 1 || numPlayers > 4) {
-        alert('Please enter a valid number of players [1-4]');
+    if (!selectedValue) {
+        alert('Please choose the number of players.');
         return;
     }
+
+    numPlayers = parseInt(selectedValue);
 
     // Initialize player positions and display their avatars
     for (var i = 0; i < numPlayers; i++) {
@@ -192,16 +236,7 @@ function submitPlayer() {
             var avatarImg = document.createElement('img');
             avatarImg.src = 'image/' + avatars[i];
             avatarImg.classList.add('player-avatar');
-
-            // Adjust avatar positions
-            if (numPlayers === 2) {
-                avatarImg.style.left = i === 0 ? '25%' : '75%';
-            } else if (numPlayers === 3) {
-                avatarImg.style.left = i === 0 ? '25%' : (i === 1 ? '50%' : '75%');
-            } else if (numPlayers === 4) {
-                avatarImg.style.top = i < 2 ? '30%' : '80%';
-                avatarImg.style.left = i % 2 === 0 ? '25%' : '75%';
-            }
+            avatarImg.classList.add('player-box');         
 
             startTile.appendChild(avatarImg);
             console.log(`Placed player ${i + 1}'s avatar on the start tile.`);
@@ -209,7 +244,7 @@ function submitPlayer() {
         }
     }
 
-    document.getElementById('playerNum').style.display = "none";
+    selectElement.style.display = "none";
     submit.style.display = "none";
 
     // Unhide the buttons
@@ -220,12 +255,13 @@ function submitPlayer() {
     highlightCurrentPlayer();
 }
 
+
 function adjustAvatarSizes(tile) {
     var avatars = tile.getElementsByClassName('player-avatar');
-    var size = 80 / Math.sqrt(avatars.length); // Calculate the size based on the square root of the number of avatars
+    var size = 100 / Math.sqrt(avatars.length); // Calculate the size based on the square root of the number of avatars
     var positions = [
         { top: '30%', left: '25%' },
-        { bottom: '30%', left: '70%' },
+        { top: '30%', left: '70%' },
         { top: '80%', left: '25%' },
         { top: '80%', left: '70%' }
     ];
@@ -244,7 +280,7 @@ function adjustAvatarSizes(tile) {
         }
     }
 
-    console.log(`Adjusted sizes of ${avatars.length} avatars on tile.`);
+    
 }
 
 function addBot() {
