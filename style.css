@@ -93,11 +93,6 @@ body {
   position: relative;
 }
 
-table, #board {
-  margin-left: 1rem; 
-  padding: 0; 
-}
-
 table {
   background-image: url(image/board.png);
   background-size: cover;
