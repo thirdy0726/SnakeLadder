@@ -2,7 +2,7 @@ body {
   background-color: #ffffff;
   backdrop-filter: blur(10px);
   font-family: Bahnschrift;
-  overflow: hidden;
+  overflow: hidden; /* Keep this for all screens */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -353,13 +353,13 @@ img {
     position: relative;
     left: 0;
     width: 100vh;
-    padding: 1rem;
+    padding: 0.5rem;
     display: inline-block;
   }
 
   img {
-    width: 40px;
-    height: 40px;
+    width: 20px;
+    height: 20px;
   }
 
   #rollDice {
@@ -375,15 +375,26 @@ img {
 }
 
 @media (max-width: 540px) {
+  html, body {
+    overflow: hidden; /* Ensure overflow is hidden on mobile devices */
+    height: 100%; /* Ensure the height is set to 100% */
+    width: 100%; /* Ensure the width is set to 100% */
+    position: fixed; /* Prevent scrolling */
+  }
+
+  .bot-box {
+    overflow: hidden; /* Prevent overflow in modal */
+  }
+  
   .box {
-    padding: 1rem;
+    padding: 0.9rem;
   }
 
   .player-box {
     width: 50px;
     height: 50px;
     position: fixed;
-    bottom: 30%;
+    bottom: 25%;
   }
 
   .players {
@@ -400,6 +411,7 @@ img {
     flex-direction: column;
     align-items: center;
     padding: 1rem;
+    overflow: hidden;
   }
 
   .left-section {
@@ -414,17 +426,18 @@ img {
     order: 2; /* Change the order to appear above */
     position: relative;
     top: 50px;
+    overflow: hidden;
   }
 
   #rollDice {
     position: fixed;
-    bottom: 30%;
+    bottom: 25%;
     right: 20%;
   }
 
   #dice-1 {
     position: fixed;
-    bottom: 30%;
+    bottom: 25%;
     right: 7%;
   }
 }
