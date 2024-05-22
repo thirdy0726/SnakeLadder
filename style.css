@@ -353,7 +353,7 @@ img {
     position: relative;
     left: 0;
     width: 100vh;
-    padding: 0.5rem;
+    padding: 1rem;
     display: inline-block;
   }
 
@@ -363,16 +363,13 @@ img {
   }
 
   #rollDice {
-    padding: 1rem 1rem;
     position: fixed;
-    bottom: 35%;
+    bottom: 28%;
     right: 15%;
   }
   #dice-1 {
-    width: 70px;
-    height: 70px;
     position: fixed;
-    bottom: 35%;
+    bottom: 28%;
     right: 5%;
   }
 }
@@ -394,10 +391,10 @@ img {
   }
 
   .player-box {
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
     position: fixed;
-    bottom: 30%;
+    bottom: 28%;
   }
 
   .players {
@@ -434,13 +431,13 @@ img {
 
   #rollDice {
     position: fixed;
-    bottom: 30%;
+    bottom: 28%;
     right: 20%;
   }
 
   #dice-1 {
     position: fixed;
-    bottom: 30%;
+    bottom: 28%;
     right: 7%;
   }
 }
