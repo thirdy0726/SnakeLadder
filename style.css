@@ -358,18 +358,18 @@ img {
   }
 
   img {
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
   }
 
   #rollDice {
     position: fixed;
-    bottom: 25%;
+    bottom: 35%;
     right: 15%;
   }
   #dice-1 {
     position: fixed;
-    bottom: 25%;
+    bottom: 35%;
     right: 5%;
   }
 }
@@ -394,7 +394,7 @@ img {
     width: 50px;
     height: 50px;
     position: fixed;
-    bottom: 28%;
+    bottom: 30%;
   }
 
   .players {
@@ -431,13 +431,13 @@ img {
 
   #rollDice {
     position: fixed;
-    bottom: 28%;
+    bottom: 30%;
     right: 20%;
   }
 
   #dice-1 {
     position: fixed;
-    bottom: 28%;
+    bottom: 30%;
     right: 7%;
   }
 }
