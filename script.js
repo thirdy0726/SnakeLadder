@@ -1,4 +1,4 @@
-var playerPositions = [1, 1, 1, 1];
+var playerPositions = [0, 0, 0, 0];
 var currentPlayer = 0;
 var players = [];
 var numPlayers = 0;
@@ -83,8 +83,10 @@ function rollDice() {
 
         console.log("Player " + (currentPlayer + 1) + " rolls a " + diceResult + ". Moving from " + currentPlayerPosition + " to " + newPlayerPosition + ".");
 
-        if (newPlayerPosition > 100) {
+        if (newPlayerPosition >= 100) { // Adjusted condition to handle reaching 100
             newPlayerPosition = 100;
+            console.log("Player " + (currentPlayer + 1) + " has reached the finish line and won the game!");
+            finishedPlayers[currentPlayer] = true;
         }
 
         if (ladders[newPlayerPosition]) {
@@ -94,7 +96,6 @@ function rollDice() {
             console.log("Player " + (currentPlayer + 1) + " hits a snake at " + newPlayerPosition + ". Sliding down to " + snakes[newPlayerPosition] + ".");
             newPlayerPosition = snakes[newPlayerPosition];
         }
-
         animateMove(currentPlayer, currentPlayerPosition, newPlayerPosition);
 
     }, 500);
@@ -103,27 +104,33 @@ function rollDice() {
 //==================================== ROLL DICE ANIMATION ============================================//
 
 function animateMove(playerIndex, start, end) {
-    var currentTileId = 'cell-' + start;
+    var currentTileId = (start === 0) ? 'startTile' : 'cell-' + start;
     var newTileId = 'cell-' + end;
 
     var currentTile = document.getElementById(currentTileId);
     var newTile = document.getElementById(newTileId);
 
-    if (currentTile) {
+    if (currentTileId === 'startTile') {
+        // Remove the player's avatar from the start tile
+        var avatarToRemove = currentTile.querySelector(`img[src='image/${avatars[playerIndex]}']`);
+        if (avatarToRemove) {
+            currentTile.removeChild(avatarToRemove);
+        }
+    } else if (currentTile) {
+        // Remove the player's avatar from the current tile
         var avatarToRemove = currentTile.querySelector(`img[src='image/${avatars[playerIndex]}']`);
         if (avatarToRemove) {
             currentTile.removeChild(avatarToRemove);
         }
     }
 
-    var nextTile = document.getElementById(newTileId);
-
-    if (nextTile) {
+    if (newTile) {
+        // Add the player's avatar to the new tile
         var avatarImg = document.createElement('img');
         avatarImg.src = 'image/' + avatars[playerIndex];
         avatarImg.classList.add('player-avatar');
-        nextTile.appendChild(avatarImg);
-        adjustAvatarSizes(nextTile);
+        newTile.appendChild(avatarImg);
+        adjustAvatarSizes(newTile);
     }
 
     playerPositions[playerIndex] = end;
@@ -148,6 +155,7 @@ function animateMove(playerIndex, start, end) {
         }, 1000); // Delay the bot's move for 1 second
     }
 }
+
 
 //==================================== HIGHLIGHT PLAYERS TURN ============================================//
 
@@ -182,7 +190,7 @@ function submitPlayer() {
     // Initialize player positions and display their avatars
     for (var i = 0; i < numPlayers; i++) {
         players[i].style.display = 'flex';
-        playerPositions[i] = 1;
+        playerPositions[i] = 0; // Changed to 0 for start tile
 
         var startTile = document.getElementById('startTile');
         if (startTile) {
@@ -273,7 +281,7 @@ function addBot() {
         var botIndex = numPlayers;
         players[botIndex].classList.add('bot');
         players[botIndex].style.display = 'flex';
-        playerPositions[botIndex] = 1;
+        playerPositions[botIndex] = 0; // Changed to 0 for start tile
 
         var startTile = document.getElementById('startTile');
         if (startTile) {
@@ -292,5 +300,3 @@ function addBot() {
         closeBotPopup();
     }
 }
-
-//==================================== BOTS ============================================//
