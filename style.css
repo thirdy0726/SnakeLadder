@@ -98,6 +98,7 @@ table {
   background-size: cover;
   max-width: 100%;
   height: auto;
+  margin-left: 30px;
 }
 
 .box {
@@ -221,11 +222,6 @@ img {
 @media (max-width: 730px) {
   .box {
     padding: 1rem;
-  }
-
-  .avatar-container {
-    position: relative;
-    left: -6%;
   }
   
   .players {
