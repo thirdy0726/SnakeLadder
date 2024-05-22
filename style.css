@@ -364,12 +364,12 @@ img {
 
   #rollDice {
     position: fixed;
-    bottom: 28%;
+    bottom: 25%;
     right: 15%;
   }
   #dice-1 {
     position: fixed;
-    bottom: 28%;
+    bottom: 25%;
     right: 5%;
   }
 }
@@ -430,6 +430,7 @@ img {
   }
 
   #rollDice {
+    padding: 1rem 1rem;
     position: fixed;
     bottom: 28%;
     right: 20%;
