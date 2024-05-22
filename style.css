@@ -358,8 +358,8 @@ img {
   }
 
   img {
-    width: 70px;
-    height: 70px;
+    width: 40px;
+    height: 40px;
   }
 
   #rollDice {
@@ -376,7 +376,7 @@ img {
 
 @media (max-width: 540px) {
   .box {
-    padding: 1.3rem;
+    padding: 1rem;
   }
 
   .player-box {
